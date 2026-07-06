@@ -4,7 +4,9 @@ import com.saideep.trainingmanagementsystem.enums.Role;
 import jakarta.persistence.*;
 
 @Entity
-public class User {
+@Table(name = "users")
+public class Users {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +23,7 @@ public class User {
     private Boolean active = true;
 
 
-    public User()
+    public Users()
     {
         //default constructor
     }
@@ -93,8 +95,5 @@ public class User {
     public void setActive(Boolean active) {
         this.active = active;
     }
-
-
-
 
 }

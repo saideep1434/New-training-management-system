@@ -1,8 +1,8 @@
 package com.saideep.trainingmanagementsystem.repository;
 
-import com.saideep.trainingmanagementsystem.entity.User;
+import com.saideep.trainingmanagementsystem.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<Users,Long> {
 
 }
