@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class UserService {
-    ObjectMapper mapper = new ObjectMapper();
 
     private final UserRepository UR;
 
