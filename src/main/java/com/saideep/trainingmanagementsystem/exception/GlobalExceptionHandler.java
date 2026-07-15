@@ -4,6 +4,7 @@ package com.saideep.trainingmanagementsystem.exception;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
@@ -25,6 +26,12 @@ public class GlobalExceptionHandler {
         }
 
         return ans;
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public String handleUserException(UserNotFoundException ex)
+    {
+        return ex.getMessage();
     }
 
 

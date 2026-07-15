@@ -4,9 +4,12 @@ import com.saideep.trainingmanagementsystem.dto.CreateUserRequest;
 import com.saideep.trainingmanagementsystem.dto.CreateUserResponse;
 import com.saideep.trainingmanagementsystem.entity.Users;
 import com.saideep.trainingmanagementsystem.enums.Role;
+import com.saideep.trainingmanagementsystem.exception.UserNotFoundException;
 import com.saideep.trainingmanagementsystem.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -64,6 +67,35 @@ public class UserService {
         response.setEmail(savedusers.getEmail());
 
         return  response;
+    }
+
+    public CreateUserResponse finduserbyid(long id)
+    {
+        Optional<Users> optionaluser = UR.findById(id);
+
+        Users finduser;
+
+        if(optionaluser.isPresent())
+        {
+            finduser = optionaluser.get(); // this line tells that okay optionaluser.get() means gives all the users inside optional box
+            // and stored in finduser reference variable ;
+        }
+        else
+        {
+            throw new UserNotFoundException("User with id " + id + " not found");
+        }
+
+
+
+        CreateUserResponse response = new CreateUserResponse();
+
+        response.setId(finduser.getId());
+        response.setFirstname(finduser.getFirstName());
+        response.setLastname(finduser.getLastName());
+        response.setEmail(finduser.getEmail());
+
+        return response;
+
     }
 
 }

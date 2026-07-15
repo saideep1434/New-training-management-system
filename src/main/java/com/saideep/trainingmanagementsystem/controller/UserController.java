@@ -41,6 +41,12 @@ public class UserController {
         return US.CreateUser(request);
     }
 
+    @GetMapping("/{id}")
+    public CreateUserResponse finduserbyid(@PathVariable long id)
+    {
+        return US.finduserbyid(id);
+    }
+
 
 
 }
