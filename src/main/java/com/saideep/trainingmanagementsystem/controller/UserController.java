@@ -11,6 +11,7 @@ import org.apache.catalina.connector.Request;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLOutput;
+import java.util.List;
 
 
 @RestController
@@ -45,6 +46,24 @@ public class UserController {
     public CreateUserResponse finduserbyid(@PathVariable long id)
     {
         return US.finduserbyid(id);
+    }
+
+    @GetMapping("/")
+    public List<CreateUserResponse> findallusers()
+    {
+        return US.findallusers();
+    }
+
+    @PutMapping("/{id}")
+    public CreateUserResponse UpdateUserById(@PathVariable long id ,@RequestBody CreateUserRequest request)
+    {
+        return US.UpdateUserById(id,request);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteUserById(@PathVariable long id)
+    {
+        return US.deleteUserById(id);
     }
 
 

@@ -3,6 +3,8 @@ package com.saideep.trainingmanagementsystem.entity;
 import com.saideep.trainingmanagementsystem.enums.Role;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class Users {
@@ -21,6 +23,14 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private Role role;
     private Boolean active = true;
+
+    @OneToMany(mappedBy = "trainer")
+    private List<Course>courses;
+
+    public List<Course> getCourses()
+    {
+        return courses;
+    }
 
 
     public Users()

@@ -1,6 +1,8 @@
 package com.saideep.trainingmanagementsystem.exception;
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,10 +30,19 @@ public class GlobalExceptionHandler {
         return ans;
     }
 
+//    @ExceptionHandler(UserNotFoundException.class)
+//    public String handleUserException(UserNotFoundException ex)
+//    {
+//       return ex.getMessage(); // currently we are returning only the message body but see here use not found
+//        // but still spring be like status 200k but it should not be the case it should be some 404 not found
+//    }
+
     @ExceptionHandler(UserNotFoundException.class)
-    public String handleUserException(UserNotFoundException ex)
+    public ResponseEntity<String> handleUserException(UserNotFoundException ex)
     {
-        return ex.getMessage();
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
     }
 
 
